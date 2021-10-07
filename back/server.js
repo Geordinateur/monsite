@@ -3,7 +3,6 @@ const app = require("./API/app.js");
 const dotenv = require("dotenv");
 dotenv.config({ path: __dirname + '\\.env' })
 
-
 const server = http.createServer(app);
 
 const port = process.env.PORT || 3000;

@@ -1,9 +1,20 @@
 # georges-grignard.fr
+## colors
+- background: #1A1B26
+- backgroundContainer: #232433
+- backgroundLightDark: #434A69
+- green: #9ECE6A
+- yellow: #F8CD7A
+- cyan: #89DDFF
+- blue: #A9B1D6
+- purple: #BB9AF7
+- orange: #DF5F00
+- red: #DB4B4B
 ## database
 1. users
-- userId
-- username
+- id
 - email
+- name
 - password
 - imageUrl
 - isAdmin
