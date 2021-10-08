@@ -6,6 +6,7 @@ const saltRounds = 10;
 exports.create = (req, res) => {
     // Validate request
     if (!req.body) {
+      console.log(req.body)
       res.status(400).send({
         message: "Content can not be empty!"
       });

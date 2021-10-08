@@ -25,6 +25,7 @@
 - userId
 - title
 - description
+- category
 - url
 - private
 - createdAt
