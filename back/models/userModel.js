@@ -1,7 +1,8 @@
 const sql = require("./db.js");
+const bcrypt = require("bcrypt");
 
 // constructor
-const User = function(user) {
+const User = function (user) {
   this.email = user.email;
   this.name = user.name;
   this.password = user.password;
@@ -40,7 +41,30 @@ User.findById = (userId, result) => {
   });
 };
 
-User.getAll = result => {
+User.login = (email, password, result) => {
+  sql.query(`SELECT * FROM users WHERE email = "${email}"`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    if (res.length) {
+      if (bcrypt.compareSync(password, res[0].password)) {
+        result(null, res[0]);
+        return;
+      } else {
+        // error to compare passwords 
+        result({ kind: "error password" }, null);
+        return;
+      }
+    }
+        // not found User with the email
+        result({ kind: "not found" }, null);
+        return;
+  });
+};
+
+User.getAll = (result) => {
   sql.query("SELECT * FROM users", (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -95,7 +119,7 @@ User.remove = (id, result) => {
   });
 };
 
-User.removeAll = result => {
+User.removeAll = (result) => {
   sql.query("DELETE FROM users", (err, res) => {
     if (err) {
       console.log("error: ", err);
