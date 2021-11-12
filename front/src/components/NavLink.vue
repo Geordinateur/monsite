@@ -6,5 +6,5 @@ export default {
 </script>
 
 <template>
-    <router-link class="nav" :to="url">{{ text }}</router-link>
+	<router-link class="nav" :to="url">{{ text }}</router-link>
 </template>
