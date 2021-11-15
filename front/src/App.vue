@@ -1,21 +1,24 @@
 <template>
-    <header>
+    <header class="App__header">
       <h1 class="title__h1">Georges-Grignard.fr</h1>
       <hr class="title__hr" noshade>
     </header>
     <div id="carrousel">
       <img class="img-placeholder" src="https://via.placeholder.com/150">
     </div>
-    <aside>
-      <NavLink url="/" text="Accueil" />
-      <NavLink url="contact" text="Contact" />
-      <NavLink url="pictures" text="Photo" />
-      <NavLink url="users" text="Espace Membre" />
+    <aside class="App__aside">
+      <NavLink url="/" icon="fas fa-home" text="Accueil" />
+      <NavLink url="contact" icon="fas fa-envelope" text="Contact" />
+      <NavLink url="picture" icon="fas fa-images" text="Photo" />
+      <NavLink url="user" icon="fas fa-user" text="Espace Membre" />
     </aside>
-    <main>
-      <router-view/>
+    <main class="App__main">
+<!--      <transition name="slide-page" mode="out-in"> -->
+  <transition name="fade" mode="out-in">
+    <router-view></router-view>
+  </transition>
     </main>
-    <footer>
+    <footer class="App__footer">
       <hr class="footer__hr" noshade>
       Copyright ...
     </footer>
@@ -28,6 +31,11 @@ export default {
   name: 'App',
   components: {
     NavLink
+  },
+  data()  {
+    return {
+      show: true
+    }
   }
 }
 </script>
@@ -77,7 +85,7 @@ hr {
 
 #app {
   @include large-only {
-    width: 80%;
+    width: 70%;
   }
   font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -87,6 +95,7 @@ hr {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 14px;
   padding: 5px;
   >* {
@@ -94,7 +103,9 @@ hr {
   main,aside {
     border: 3px solid $border;
     background-color: $background-content;
+    &,#carrousel {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
   }
 }
 
@@ -108,8 +119,10 @@ aside {
     flex-flow: column wrap;
     flex-grow: 1;
     justify-content: flex-start;
+    align-items: stretch;
     order: 2;
     width: auto;
+    max-width: 250px;
     padding: 0;
     margin: 0;
     height: auto;
@@ -118,26 +131,42 @@ aside {
   display: flex;  
   align-items: center;
   height: 40px;
-  .nav {
+  .nav__link {
+    display: flex;
     @include large-only {
       &::before {
-        content: " *** ";
+        content: "";
       }
-      padding: 0;
+      width: 100%;
+      height: 40px;
       border: none;
       border-bottom: 3px solid $background-content;
+      justify-content: flex-start;
     }
-    vertical-align: center;
-    padding: 9px 20px 10px 20px;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
     border-top: 3px solid $border;
     border-bottom: 3px solid $border;
   }
-  .nav:hover {
+  .nav__link:hover {
     @include large-only {
       border-bottom: 3px solid $background-content-active;
     }
     background-color: $background-content-active;
   }
+  .nav__link > span {
+    @include large-only {
+      display: inline;
+    }
+    display: none;
+  }
+  
+  .nav__link > i {
+    padding: 10px;
+  }
+
   .router-link-active {
     background-color: $background-content-active;
     border-bottom: 3px solid $light-yellow;
@@ -185,11 +214,46 @@ footer {
   border: 2px solid $border;
 }
 
+.fade-page-enter-active, .fade-page-leave-active {
+  transition: opacity .1s, transform .1s;
+}
+.fade-page-enter, .fade-page-leave-active {
+  opacity: 0;
+}
+.fade-page-enter-to {
+  transition: opacity .1s, transform .1s;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s, transform .5s;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+
+
+
+/* Les animations d'entrée (« enter ») et de sortie (« leave »)  */
+/* peuvent utiliser différentes fonctions de durée et de temps.  */
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+
+
 #carrousel {
   width: 100%;
   background-color: lightgrey;
+  @include large-only {
+    height: 300px;
+  }
 }
 
 </style>
-
-
