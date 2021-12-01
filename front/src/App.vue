@@ -3,28 +3,6 @@
     <h1 class="header__h1">Georges-Grignard.fr</h1>
     <hr class="header__hr" noshade>
   </header>
-  <!--
-    <div id="carousel">
-    <div>
-    <div class="item__image">
-    <img src="https://www.bing.com/th?id=OHR.FloridaManatee_EN-US9136189368_1920x1200.jpg&rf=LaDigue_1920x1200.jpg">
-    </div>
-    <div class="item__body">
-    <h3>Titre de l'image</h3>
-    <p>Description de l'image</p>
-    </div>
-    </div>
-    <div>
-    <div class="item__image">
-    <img src="https://images6.alphacoders.com/413/413484.jpg">
-    </div>
-    <div class="item__body">
-    <h3>Titre de l'image</h3>
-    <p>Description de l'image</p>
-    </div>
-    </div>
-    </div>
-  -->
   <aside class="app__aside">
     <NavLink url="/" icon="fas fa-home" text="Accueil" />
     <NavLink url="contact" icon="fas fa-envelope" text="Contact" />
@@ -32,23 +10,15 @@
     <NavLink url="user" icon="fas fa-user" text="Espace Membre" />
   </aside>
   <main class="app__main">
-    <!--      <transition name="slide-page" mode="out-in"> -->
-
     <router-view v-slot="{ Component }">
       <transition name="fade-page" mode="out-in">
       <component :is="Component" />
       </transition>
     </router-view>
-
   </main>
   <footer class="app__footer">
     <hr class="footer__hr" noshade>
-    <!--
-      <div id="about">
-      Développeur web indépendant, freelance à Nantes. Je suis un passionnée du développement web, depuis mes 16 ans. Après plusieur années à tartiner de l'enrobé sur nos routes je me suis enfin lancé dans cette reconversion professionnel, a fin de faire cette passion une phylosophie de vie. 
-      </div>
-    -->
-    <div class="footer__about">
+      <div class="footer__about">
       <h3>Développeur informatique indépendant</h3>
       ***TEXTE COPIÉ*** Développeur Web front & back-end & Webdesigner freelance, je suis à votre disposition pour répondre à tout type de projets de création de sites internet, de développement spécifique ou d'applications web. Passionné par les technologies liées au Web, je mets mes compétences au service de vos besoins dans divers domaines.
     </div>
@@ -65,12 +35,14 @@
 </template>
 
 <script>
-import NavLink from "./components/NavLink.vue"
+import NavLink from "./components/NavLink"
+import Carousel from "./components/Carousel"
 
 export default {
   name: 'App',
   components: {
-    NavLink
+    NavLink,
+    Carousel
   },
   data()  {
     return {
@@ -83,8 +55,13 @@ export default {
 <style lang="scss">
 @import "./assets/scss/_variables.scss";
 @import "./assets/scss/_mixins.scss";
-@import "./assets/scss/_carousel.scss";
 //@import "./assets/scss/_functions.scss";
+
+body, html {
+	min-height: 100%;
+	overflow-x: hidden;
+}
+
 
 body {
   background-color: $background;
@@ -104,7 +81,8 @@ ul, li, h3, hr {
 
 #app {
   @include large-only {
-    width: 70%;
+    min-width: 1080px;
+    width: 100%;
   }
   font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -140,7 +118,7 @@ aside {
     justify-content: flex-start;
     align-items: stretch;
     order: 2;
-    width: auto;
+    width: 20%;
     max-width: 250px;
     padding: 0;
     margin: 0;
@@ -317,7 +295,7 @@ opacity: 0;
 }
 
 
-
+/*
 #carousel {
   width: 100%;
   background-color: lightgrey;
@@ -337,5 +315,6 @@ opacity: 0;
     }
   }
 }
+*/
 
 </style>

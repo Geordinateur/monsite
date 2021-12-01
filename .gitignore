@@ -1,5 +1,6 @@
 back/.env
 back/config/dbConfig.js
 node_modules
+*/node_modules
 back.bak
 front.bak
