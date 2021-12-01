@@ -12,7 +12,7 @@
   <main class="app__main">
     <router-view v-slot="{ Component }">
       <transition name="fade-page" mode="out-in">
-      <component :is="Component" />
+        <component :is="Component" />
       </transition>
     </router-view>
   </main>
@@ -82,7 +82,7 @@ ul, li, h3, hr {
 #app {
   @include large-only {
     min-width: 1080px;
-    width: 100%;
+    width: 70%;
   }
   font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -264,14 +264,18 @@ footer {
 .form {
   display: flex;
   flex-flow: column wrap;
-  margin: 10px;
   margin-right: 20px;
   label {
     display: block;
-    margin: 20px;
+    margin: 20px 0;
   }
   input, textarea {
     width: 100%;
+    opacity: 0.7;
+    padding: 10px;
+  }
+  input:hover,:focus textarea:hover,:focus {
+    opacity: 1;
   }
   textarea {
     min-height: 230px;
@@ -280,8 +284,10 @@ footer {
 
 button {
   padding: 10px;
+  margin: 10px 0;
   background-color: $background-content;
   border: 2px solid $border;
+  color: $font-color;
 }
 
 button:hover {
