@@ -261,6 +261,32 @@ footer {
   border: 2px solid $border;
 }
 
+.form {
+  display: flex;
+  flex-flow: column wrap;
+  margin: 10px;
+  margin-right: 20px;
+  label {
+    display: block;
+    margin: 20px;
+  }
+  input, textarea {
+    width: 100%;
+  }
+  textarea {
+    min-height: 230px;
+  }
+}
+
+button {
+  padding: 10px;
+  background-color: $background-content;
+  border: 2px solid $border;
+}
+
+button:hover {
+  background-color: $background;
+}
 
 .fade-page-enter-active, .fade-page-leave-active {
   transition: opacity .2s, transform .2s;
